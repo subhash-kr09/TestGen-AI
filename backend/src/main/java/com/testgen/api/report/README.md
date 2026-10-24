@@ -1,0 +1,2 @@
+# Report module
+This package is reserved for the corresponding domain services/controllers/DTOs as the platform grows. The core working implementation lives in `controller`, `service`, `entity`, and `repository` for the starter build.

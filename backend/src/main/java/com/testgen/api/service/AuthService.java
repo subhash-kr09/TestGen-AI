@@ -1,0 +1,6 @@
+package com.testgen.api.service;
+import com.testgen.api.entity.User; import com.testgen.api.repository.UserRepository; import com.testgen.api.security.JwtService; import org.springframework.security.crypto.password.PasswordEncoder; import org.springframework.stereotype.Service;
+@Service public class AuthService { private final UserRepository users; private final PasswordEncoder encoder; private final JwtService jwt; public AuthService(UserRepository u,PasswordEncoder e,JwtService j){users=u;encoder=e;jwt=j;}
+ public String register(String name,String email,String password){if(users.findAll().stream().anyMatch(x->x.email.equalsIgnoreCase(email)))throw new IllegalArgumentException("Email already registered"); User u=new User();u.name=name;u.email=email.toLowerCase();u.passwordHash=encoder.encode(password);u=users.save(u);return jwt.create(u.id,u.email,u.role);}
+ public String login(String email,String password){User u=users.findAll().stream().filter(x->x.email.equalsIgnoreCase(email)).findFirst().orElseThrow(()->new IllegalArgumentException("Invalid credentials"));if(!encoder.matches(password,u.passwordHash))throw new IllegalArgumentException("Invalid credentials");return jwt.create(u.id,u.email,u.role);}
+}

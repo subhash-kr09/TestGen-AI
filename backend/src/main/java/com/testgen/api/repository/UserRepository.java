@@ -1,0 +1,1 @@
+package com.testgen.api.repository; import com.testgen.api.entity.User; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface UserRepository extends JpaRepository<User,Long> {}

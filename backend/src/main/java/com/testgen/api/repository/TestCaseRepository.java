@@ -1,0 +1,1 @@
+package com.testgen.api.repository; import com.testgen.api.entity.TestCase; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface TestCaseRepository extends JpaRepository<TestCase,Long> {}

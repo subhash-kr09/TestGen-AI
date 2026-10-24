@@ -1,0 +1,3 @@
+package com.testgen.api.entity;
+import jakarta.persistence.*; import java.time.Instant;
+@Entity @Table(name="test_cases") public class TestCase { @Id @GeneratedValue(strategy=GenerationType.IDENTITY) public Long id; @ManyToOne(optional=false) public Project project; public String name; public String type; public String target; @Column(columnDefinition="TEXT") public String inputData; @Column(columnDefinition="TEXT") public String expectedOutput; @Column(columnDefinition="TEXT") public String generatedCode; public String priority="MEDIUM"; public String status="GENERATED"; public Instant createdAt=Instant.now(); }
